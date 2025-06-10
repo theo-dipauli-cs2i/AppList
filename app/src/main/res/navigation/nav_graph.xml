@@ -9,7 +9,7 @@
         android:id="@+id/AppListFragment"
         android:name="com.example.dummy.AppListFragment"
         android:label="@string/app_list_fragment"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_app_list">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"

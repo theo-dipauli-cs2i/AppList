@@ -6,5 +6,5 @@ class Application(
     var description: String,
     var note: Double,
     var telechargement: Int,
-    var icone: String
+    var icone: Int
 )
