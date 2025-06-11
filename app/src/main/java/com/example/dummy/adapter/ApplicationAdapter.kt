@@ -9,14 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dummy.R
-import com.example.dummy.models.Application
-import androidx.core.view.isVisible
 import com.example.dummy.AppDetailActivity
+import com.example.dummy.models.Application
+import com.example.dummy.models.Commentaire
 
 class ApplicationAdapter(
     private val context: Context,
     private val itemLayout: Int,
-    private val applications: List<Application>
+    private val applications: MutableList<Application>
 ) : RecyclerView.Adapter<ApplicationAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -61,12 +61,14 @@ class ApplicationAdapter(
 
         holder.detailButton.setOnClickListener {
             val intent = Intent(this.context, AppDetailActivity::class.java).apply {
-                putExtra("appName", application.nomApplication)
-                putExtra("auteur", application.auteur)
-                putExtra("description", application.description)
-                putExtra("note", application.note)
-                putExtra("telechargement", application.telechargement)
-                putExtra("icone", application.icone)
+//                putExtra("appName", application.nomApplication)
+//                putExtra("auteur", application.auteur)
+//                putExtra("description", application.description)
+//                putExtra("note", application.note)
+//                putExtra("telechargement", application.telechargement)
+//                putExtra("icone", application.icone)
+//                putExtra("commentaire", application.commentaire)
+                putExtra("application", application)
             }
             context.startActivity(intent)
         }

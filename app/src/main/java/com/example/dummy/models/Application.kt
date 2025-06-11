@@ -1,5 +1,7 @@
 package com.example.dummy.models
 
+import java.io.Serializable
+
 class Application(
     var nomApplication: String,
     var auteur: String,
@@ -7,5 +9,6 @@ class Application(
     var note: Double,
     var telechargement: Int,
     var icone: Int,
-    var isDescriptionVisible : Boolean = false
-)
+    var commentaire: MutableList<Commentaire>,
+    var isDescriptionVisible: Boolean = false
+) : Serializable

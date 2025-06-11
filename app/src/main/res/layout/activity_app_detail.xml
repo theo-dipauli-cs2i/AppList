@@ -53,7 +53,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="26dp"
-        android:src="@android:drawable/btn_star_big_on"
+        android:src="@drawable/star"
         app:layout_constraintStart_toEndOf="@+id/download"
         app:layout_constraintTop_toBottomOf="@+id/appName"
         app:tint="#FF4081" />
@@ -66,7 +66,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="4.7"
-        android:textColor="#FF4081"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/noteIcon"
@@ -76,7 +75,7 @@
         android:id="@+id/downloadIcon"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@android:drawable/stat_sys_download"
+        android:src="@drawable/download"
         app:tint="#4285F4"
         app:layout_constraintTop_toBottomOf="@id/auteurName"
         app:layout_constraintStart_toStartOf="@id/appName"
@@ -120,6 +119,16 @@
         android:text="Back"
         tools:text="Back" />
 
-    <!-- Bouton détail -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentaireView"
+        android:layout_width="381dp"
+        android:layout_height="468dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

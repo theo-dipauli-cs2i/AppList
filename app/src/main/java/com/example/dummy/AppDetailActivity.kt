@@ -3,45 +3,61 @@ package com.example.dummy
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dummy.adapter.ApplicationAdapter
+import com.example.dummy.adapter.CommentaireAdapter
 import com.example.dummy.databinding.ActivityAppDetailBinding
-import com.example.dummy.databinding.ItemApplicationBinding
+import com.example.dummy.models.Application
 
 class AppDetailActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAppDetailBinding
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val binding: ActivityAppDetailBinding = ActivityAppDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_app_detail)
+        val application = intent.getSerializableExtra("application") as? Application
+        displayComment(application, binding)
+
+        setContentView(binding.root)
 
 
 
-            binding = ActivityAppDetailBinding.inflate(layoutInflater)
-            setContentView(binding.root)
+        val appName = application?.nomApplication
+        val auteur = application?.auteur
+        val description = application?.description
+        val note = application?.note
+        val telechargement = application?.telechargement
+        val icone = application?.icone
 
-            val appName = intent.getStringExtra("appName")
-            val auteur = intent.getStringExtra("auteur")
-            val description = intent.getStringExtra("description")
-            val note = intent.getDoubleExtra("note", 0.0)
-            val telechargement = intent.getIntExtra("telechargement", 0)
-            val icone = intent.getIntExtra("icone", 0)
-
-            // Afficher les données
-            binding.appName.text = appName
-            binding.auteurName.text = auteur
-            binding.description.text = description
-            binding.note.text = note.toString()
-            binding.download.text = telechargement.toString()
+        binding.appName.text = appName
+        binding.auteurName.text = auteur
+        binding.description.text = description
+        binding.note.text = note.toString()
+        binding.download.text = telechargement.toString()
+        if (icone != null) {
             binding.appImage.setImageResource(icone)
+        }
 
-           binding.backButton.setOnClickListener {
-                onBackPressed()
-            }
+       binding.backButton.setOnClickListener {
+            onBackPressed()
         }
     }
+
+    fun displayComment(application : Application?, binding: ActivityAppDetailBinding) {
+        val commentRecyclerView = binding.commentaireView
+        val commentAdapter = application?.let {
+            CommentaireAdapter(
+                this,
+                R.layout.comment_application,
+                application.commentaire
+            )
+        }
+        commentRecyclerView.adapter = commentAdapter
+        commentRecyclerView.layoutManager = LinearLayoutManager(this)
+    }
+
+}
