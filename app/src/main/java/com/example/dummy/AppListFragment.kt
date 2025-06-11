@@ -47,6 +47,8 @@ class AppListFragment : Fragment() {
             displayApps(isGrid)
             updateFabIcon(fab, isGrid)
         }
+
+
     }
 
 

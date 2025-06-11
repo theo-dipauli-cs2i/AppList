@@ -1,6 +1,7 @@
 package com.example.dummy.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dummy.R
 import com.example.dummy.models.Application
 import androidx.core.view.isVisible
+import com.example.dummy.AppDetailActivity
 
 class ApplicationAdapter(
     private val context: Context,
@@ -29,13 +31,11 @@ class ApplicationAdapter(
 
 
 
-    // Méthode pour créer les ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(itemLayout, parent, false)
         return ViewHolder(view)
     }
 
-    // Méthode pour lier les données aux ViewHolder
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val application = applications[position]
         holder.appName.text = application.nomApplication
@@ -46,14 +46,29 @@ class ApplicationAdapter(
         holder.description.text = application.description
         holder.description.visibility = View.GONE
         holder.detailButton.visibility = View.GONE
+        if (application.isDescriptionVisible) {
+            holder.description.visibility = View.VISIBLE
+            holder.detailButton.visibility = View.VISIBLE
+        } else {
+            holder.description.visibility = View.GONE
+            holder.detailButton.visibility = View.GONE
+        }
+
         holder.itemView.setOnClickListener {
-            if (holder.description.isVisible) {
-                holder.description.visibility = View.GONE
-                holder.detailButton.visibility = View.GONE
-            } else {
-                holder.description.visibility = View.VISIBLE
-                holder.detailButton.visibility = View.VISIBLE
+            application.isDescriptionVisible = !application.isDescriptionVisible
+            notifyItemChanged(position)
+        }
+
+        holder.detailButton.setOnClickListener {
+            val intent = Intent(this.context, AppDetailActivity::class.java).apply {
+                putExtra("appName", application.nomApplication)
+                putExtra("auteur", application.auteur)
+                putExtra("description", application.description)
+                putExtra("note", application.note)
+                putExtra("telechargement", application.telechargement)
+                putExtra("icone", application.icone)
             }
+            context.startActivity(intent)
         }
     }
 
