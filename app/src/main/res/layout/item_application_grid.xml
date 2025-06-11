@@ -1,5 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -83,5 +82,40 @@
         app:layout_constraintStart_toStartOf="@+id/appName"
         app:layout_constraintTop_toBottomOf="@+id/auteurName"
         app:tint="#4285F4" />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="Rejoignez des millions de joueurs..."
+        android:textColor="#666666"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/note" />
+
+
+    <!-- Bouton détails -->
+    <TextView
+        android:id="@+id/detailButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="DÉTAILS"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
